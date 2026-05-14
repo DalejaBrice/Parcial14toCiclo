@@ -1,0 +1,64 @@
+package Examen;
+
+import java.util.Arrays;
+
+public class Matriz implements Runnable {
+    int a = 3;
+    int b = 3;
+    static String buscado = "Java";
+    String[][] tabla = new String[a][b];
+    static int dat1 = 0;
+    static int dat2 = 0;
+    static int dat3 = 0;
+
+    Thread hilo1;
+    Thread hilo2;
+    Thread hilo3;
+
+    public void Tabla(String[][] tabla) {
+        tabla[a][b] = String[]{"Java", "Python", "Java",
+                "C++", "Java", "Go",
+                "Java", "Rust", "Java"});
+    }
+
+    public Matriz() {
+        hilo1 = new Thread(this);
+        hilo2 = new Thread(this);
+        hilo3 = new Thread(this);
+    }
+
+    public void Compare(Thread hilo1, Thread hilo2, Thread hilo3) {
+        String dato = tabla[a][b];
+        hilo1.start();
+        hilo2.start();
+        hilo3.start();
+        try{
+            hilo1.join();
+            hilo2.join();
+            hilo3.join();
+
+            for(int i = 0; i < 2; i++){
+                for(int j = 0; j < b; j++){
+                    if (tabla[i][j].equals(dato)){
+                        dat1++;
+                    }
+                }
+            }
+        }
+        catch(InterruptedException e){
+
+        }
+
+    }
+
+    @Override
+    public void run() {
+
+    }
+
+    static void main() {
+        System.out.println("Palabra buscada: "+ buscado);
+
+        System.out.println("Resultado: " + dat1);
+    }
+}
