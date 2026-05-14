@@ -10,9 +10,9 @@ public class Matriz implements Runnable {
 
     public static final String buscado = "Java";
 
-    private int fila;
+    public int fila;
 
-    private int encontrados = 0;
+    public int encontrados = 0;
 
     public Matriz(int fila) {
         this.fila = fila;
